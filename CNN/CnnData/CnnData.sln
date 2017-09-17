@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.15
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CnnData.Console", "CnnData.Console\CnnData.Console.csproj", "{6A329070-38C5-4BD4-85FA-FD97ED18379E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CnnData.Lib", "CnnData.Lib\CnnData.Lib.csproj", "{5C406C71-A977-4B2F-A151-5FC4218E5ED1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CnnData.App", "CnnData.App\CnnData.App.csproj", "{97C3AFE9-2624-43D4-B3BD-2972361F3D7E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6A329070-38C5-4BD4-85FA-FD97ED18379E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A329070-38C5-4BD4-85FA-FD97ED18379E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A329070-38C5-4BD4-85FA-FD97ED18379E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A329070-38C5-4BD4-85FA-FD97ED18379E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C406C71-A977-4B2F-A151-5FC4218E5ED1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C406C71-A977-4B2F-A151-5FC4218E5ED1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C406C71-A977-4B2F-A151-5FC4218E5ED1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C406C71-A977-4B2F-A151-5FC4218E5ED1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{97C3AFE9-2624-43D4-B3BD-2972361F3D7E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97C3AFE9-2624-43D4-B3BD-2972361F3D7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97C3AFE9-2624-43D4-B3BD-2972361F3D7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97C3AFE9-2624-43D4-B3BD-2972361F3D7E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
