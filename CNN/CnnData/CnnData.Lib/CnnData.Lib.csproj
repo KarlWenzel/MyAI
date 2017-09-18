@@ -50,6 +50,7 @@
     <Compile Include="BO\Feature.cs" />
     <Compile Include="BO\FileDirectory.cs" />
     <Compile Include="BO\FileInstance.cs" />
+    <Compile Include="BO\InstanceSetGroup.cs" />
     <Compile Include="BO\InstanceSets.cs" />
     <Compile Include="BO\InstanceSetRole.cs" />
     <Compile Include="BO\Label.cs" />

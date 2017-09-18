@@ -18,6 +18,10 @@ namespace CnnData.Lib.BO
     public InstanceSetRoleEnum InstanceSetRoleID { get; set; }
     public virtual InstanceSetRole InstanceSetRole { get; set; }
 
+    [ForeignKey("InstanceSetGroup")]
+    public int InstanceSetGroupID { get; set; }
+    public virtual InstanceSetGroup InstanceSetGroup { get; set; }
+
     public virtual ICollection<FileInstance> FileInstances { get; set; }
   }
 }
