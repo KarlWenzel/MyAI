@@ -1,0 +1,69 @@
+﻿<Window x:Class="CnnData.WPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CnnData.WPF"
+        mc:Ignorable="d"
+        DataContext="{Binding Main, Source={StaticResource Locator}}"
+        Title="MainWindow" Height="500" Width="1024">
+  
+  <DockPanel>
+
+    <Menu DockPanel.Dock="Top">
+      <MenuItem Header="_File">
+        <MenuItem Header="_Open"/>
+        <MenuItem Header="_Close"/>
+        <MenuItem Header="_Save"/>
+      </MenuItem>
+    </Menu>
+    
+    <Grid>
+      <Grid.RowDefinitions>
+        <RowDefinition/>
+      </Grid.RowDefinitions>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="255" MinWidth="10"/>
+        <ColumnDefinition Width="Auto"/>
+        <ColumnDefinition MinWidth="10"/>
+      </Grid.ColumnDefinitions>
+      <DockPanel Grid.Row="0" Grid.Column="0">
+        <StatusBar DockPanel.Dock="Top">
+          <StatusBarItem>
+            <TextBlock>Connected to Database</TextBlock>
+          </StatusBarItem>
+        </StatusBar>
+        <Label Content="Action Pane" Background="Azure"/>
+      </DockPanel>      
+      <DockPanel Grid.Row="0" Grid.Column="2">
+        <StatusBar DockPanel.Dock="Top">
+          <StatusBarItem>
+            <Button>Prev</Button>
+          </StatusBarItem>
+          <StatusBarItem>
+            <Button>Next</Button>
+          </StatusBarItem>
+          <StatusBarItem>
+            <TextBlock>Tags: One, Two, Three</TextBlock>
+          </StatusBarItem>
+          <StatusBarItem>
+            <Button Command="{Binding TalkCommand}">Talk</Button>
+          </StatusBarItem>
+        </StatusBar>
+        <StackPanel Background="Lavender">
+          <StackPanel.ContextMenu>
+            <ContextMenu>
+              <MenuItem Header="Rawr" />
+              <MenuItem Header="Properties" />
+            </ContextMenu>
+          </StackPanel.ContextMenu>
+          <TextBlock Text="View Pane"></TextBlock>
+          
+        </StackPanel>
+      </DockPanel>
+      
+      <GridSplitter Grid.Row="0"  Grid.Column="1" Width="6" BorderThickness="0.5 0 0.5 0" BorderBrush="DarkSlateGray" VerticalAlignment="Stretch" HorizontalAlignment="Center"></GridSplitter>
+    </Grid>
+    
+  </DockPanel>  
+</Window>
