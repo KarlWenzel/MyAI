@@ -8,12 +8,13 @@ using System.Threading.Tasks;
 
 namespace CnnData.Lib.BO
 {
-  [Table("FileDirectories")]
-  public class FileDirectory
+  [Table("ImageDirectories")]
+  public class ImageDirectory
   {
     [Key]
     [MaxLength(255)]
     public string DirectoryName { get; set; }
-    public virtual ICollection<Feature> Features { get; set; }
+
+    public virtual ICollection<ImageDirectoryFeature> ImageDirectoryFeatures { get; set; }
   }
 }

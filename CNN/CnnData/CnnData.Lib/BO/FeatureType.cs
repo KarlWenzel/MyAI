@@ -8,12 +8,13 @@ using System.Threading.Tasks;
 
 namespace CnnData.Lib.BO
 {
-  [Table("Features")]
-  public class Feature
+  [Table("FeatureTypes")]
+  public class FeatureType
   {
     [Key]
-    public int ID { get; set; }
+    [MaxLength(128)]
     public string FeatureName { get; set; }
-    public string FeatureValue { get; set; }
+
+    public string Notes { get; set; }
   }
 }

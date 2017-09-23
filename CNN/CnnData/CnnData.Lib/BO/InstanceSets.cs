@@ -22,6 +22,6 @@ namespace CnnData.Lib.BO
     public int InstanceSetGroupID { get; set; }
     public virtual InstanceSetGroup InstanceSetGroup { get; set; }
 
-    public virtual ICollection<FileInstance> FileInstances { get; set; }
+    public virtual ICollection<Instance> Instances { get; set; }
   }
 }

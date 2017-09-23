@@ -47,9 +47,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BO\Feature.cs" />
-    <Compile Include="BO\FileDirectory.cs" />
-    <Compile Include="BO\FileInstance.cs" />
+    <Compile Include="BO\FeatureType.cs" />
+    <Compile Include="BO\InstanceFeature.cs" />
+    <Compile Include="BO\ImageDirectory.cs" />
+    <Compile Include="BO\ImageDirectoryFeature.cs" />
+    <Compile Include="BO\ImageFileFeature.cs" />
+    <Compile Include="BO\Instance.cs" />
+    <Compile Include="BO\ImageFile.cs" />
     <Compile Include="BO\InstanceSetGroup.cs" />
     <Compile Include="BO\InstanceSets.cs" />
     <Compile Include="BO\InstanceSetRole.cs" />

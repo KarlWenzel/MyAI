@@ -35,9 +35,7 @@ namespace CnnData.WPF.ViewModels
     public void Talk()
     {
       var reader = new SpeechSynthesizer();
-      //reader.Speak("You are some hot hot shat, " + Environment.UserName);
-      reader.Speak("thanks a lot bro! The easy way that I found in the web (Y)");
-      reader.Speak("Thanks for sharing idea about the wpf desing.");
+      reader.Speak("Shat in the fuck, you bucket of fucking shat. Go fuck your shat in a hat with your duck fucker.");
     }
   }
 }

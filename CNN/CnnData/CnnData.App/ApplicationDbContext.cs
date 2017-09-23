@@ -14,9 +14,13 @@ namespace CnnData.App
     {
     }
 
-    public virtual DbSet<Feature> Features { get; set; }
-    public virtual DbSet<FileDirectory> FileDirectories { get; set; }
-    public virtual DbSet<FileInstance> FileInstances { get; set; }
+    public virtual DbSet<FeatureType> FeatureTypes { get; set; }
+    public virtual DbSet<ImageDirectory> ImageDirectories { get; set; }
+    public virtual DbSet<ImageDirectoryFeature> ImageDirectoryFeatures { get; set; }
+    public virtual DbSet<ImageFile> ImageFiles { get; set; }
+    public virtual DbSet<ImageFileFeature> ImageFileFeatures { get; set; }
+    public virtual DbSet<Instance> Instances { get; set; }
+    public virtual DbSet<InstanceFeature> InstanceFeatures { get; set; }
     public virtual DbSet<InstanceSetGroup> InstanceSetGroups { get; set; }
     public virtual DbSet<InstanceSetRole> InstanceSetRoles { get; set; }
     public virtual DbSet<InstanceSet> InstanceSets { get; set; }
