@@ -8,20 +8,21 @@ using System.Threading.Tasks;
 
 namespace CnnData.Lib.BO
 {
-  [Table("InstanceFeatures")]
-  public class InstanceFeature
+  [Table("InstanceSetInstances")]
+  public class InstanceSetInstance
   {
     [Key, Column(Order = 0)]
-    [MaxLength(128)]
-    [ForeignKey("FeatureType")]
-    public string FeatureName { get; set; }
-    public virtual FeatureType FeatureType { get; set; }
+    [ForeignKey("InstanceSet")]
+    public int InstanceSetID { get; set; }
+    public virtual InstanceSet InstanceSet { get; set; }
 
     [Key, Column(Order = 1)]
     [ForeignKey("Instance")]
     public int InstanceID { get; set; }
     public virtual Instance Instance { get; set; }
 
-    public string Value { get; set; }
+    [ForeignKey("InstanceSetRole")]
+    public InstanceSetRoleEnum InstanceSetRoleID { get; set; }
+    public virtual InstanceSetRole InstanceSetRole { get; set; }
   }
 }

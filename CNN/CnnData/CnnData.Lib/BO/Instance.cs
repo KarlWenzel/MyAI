@@ -20,6 +20,6 @@ namespace CnnData.Lib.BO
 
     public virtual ICollection<InstanceFeature> InstanceFeatures { get; set; }
     public virtual ICollection<Label> Labels { get; set; }
-    public virtual ICollection<InstanceSet> InstanceSets { get; set; }
+    public virtual ICollection<InstanceSetInstance> InstanceSetInstances { get; set; }
   }
 }

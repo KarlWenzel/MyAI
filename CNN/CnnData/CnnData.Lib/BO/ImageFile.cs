@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CnnData.Lib.BO
 {
-  [Table("FileData")]
+  [Table("ImageFiles")]
   public class ImageFile
   {
     [Key]

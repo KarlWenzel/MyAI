@@ -13,9 +13,9 @@ namespace CnnData.Lib.BO
   {
     [Key, Column(Order = 0)]
     [MaxLength(128)]
-    [ForeignKey("Feature")]
+    [ForeignKey("FeatureType")]
     public string FeatureName { get; set; }
-    public virtual FeatureType Feature { get; set; }
+    public virtual FeatureType FeatureType { get; set; }
 
     [Key, Column(Order = 1)]
     [ForeignKey("ImageDirectory")]

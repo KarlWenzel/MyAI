@@ -14,14 +14,14 @@ namespace CnnData.Lib.BO
     [Key]
     public int ID { get; set; }
 
-    [ForeignKey("InstanceSetRole")]
-    public InstanceSetRoleEnum InstanceSetRoleID { get; set; }
-    public virtual InstanceSetRole InstanceSetRole { get; set; }
+    public int? Seed { get; set; }
+    public int? MinFileInstanceID { get; set; }
+    public int? MaxFileInstanceID { get; set; }
+    public bool UsesCrossValidation { get; set; }
 
-    [ForeignKey("InstanceSetGroup")]
-    public int InstanceSetGroupID { get; set; }
-    public virtual InstanceSetGroup InstanceSetGroup { get; set; }
-
-    public virtual ICollection<Instance> Instances { get; set; }
+    public DateTime DateCreated { get; set; }
+    public string Notes { get; set; }
+    
+    public virtual ICollection<InstanceSetInstance> InstanceSetInstances { get; set; }
   }
 }

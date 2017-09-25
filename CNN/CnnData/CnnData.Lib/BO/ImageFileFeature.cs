@@ -8,14 +8,14 @@ using System.Threading.Tasks;
 
 namespace CnnData.Lib.BO
 {
-  [Table("FileRecordFeatures")]
+  [Table("ImageFileFeatures")]
   public class ImageFileFeature
   {
     [Key, Column(Order = 0)]
     [MaxLength(128)]
-    [ForeignKey("Feature")]
+    [ForeignKey("FeatureType")]
     public string FeatureName { get; set; }
-    public virtual FeatureType Feature { get; set; }
+    public virtual FeatureType FeatureType { get; set; }
 
     [Key, Column(Order = 1)]
     [ForeignKey("ImageFile")]

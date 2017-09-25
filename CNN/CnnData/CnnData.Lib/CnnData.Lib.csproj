@@ -54,7 +54,7 @@
     <Compile Include="BO\ImageFileFeature.cs" />
     <Compile Include="BO\Instance.cs" />
     <Compile Include="BO\ImageFile.cs" />
-    <Compile Include="BO\InstanceSetGroup.cs" />
+    <Compile Include="BO\InstanceSetInstance.cs" />
     <Compile Include="BO\InstanceSets.cs" />
     <Compile Include="BO\InstanceSetRole.cs" />
     <Compile Include="BO\Label.cs" />
