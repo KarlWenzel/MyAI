@@ -1,7 +1,17 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="clr-namespace:CnnData.WPF">
+                    xmlns:local="clr-namespace:CnnData.WPF"
+										xmlns:controls="clr-namespace:CnnData.WPF.Controls"
+										xmlns:viewModels="clr-namespace:CnnData.WPF.ViewModels"
+										xmlns:converters="clr-namespace:CnnData.WPF.Converters">
 
   <local:MyLocator x:Key="Locator"/>
-  
+
+  <DataTemplate DataType="{x:Type viewModels:DirectoryManagerVM}">
+    <controls:DirectoryManager></controls:DirectoryManager>
+  </DataTemplate>
+                
+  <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter">
+  </converters:BoolToVisibilityConverter>
+
 </ResourceDictionary>

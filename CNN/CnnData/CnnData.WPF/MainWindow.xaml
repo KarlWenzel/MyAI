@@ -47,7 +47,7 @@
             <TextBlock>Tags: One, Two, Three</TextBlock>
           </StatusBarItem>
           <StatusBarItem>
-            <Button Command="{Binding TalkCommand}">Talk</Button>
+            <Button Command="{Binding OpenDirectoryManagerCommand}">Open Folder</Button>
           </StatusBarItem>
         </StatusBar>
         <StackPanel Background="Lavender">

@@ -1,4 +1,5 @@
 ﻿using CnnData.App.Interfaces;
+using CnnData.WPF.Interfaces;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
@@ -20,6 +21,10 @@ namespace CnnData.WPF.Services
     {
       var win = new Window();
       win.Content = viewModel;
+      if (viewModel is IWindowable)
+      {
+        (viewModel as IWindowable).Window = win;
+      }
       win.Show();
     }
 
@@ -28,6 +33,10 @@ namespace CnnData.WPF.Services
       var win = new Window();
       win.Title = title;
       win.Content = viewModel;
+      if (viewModel is IWindowable)
+      {
+        (viewModel as IWindowable).Window = win;
+      }
       return win.ShowDialog();
     }
 

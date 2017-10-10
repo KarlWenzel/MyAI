@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BO\FeatureType.cs" />
+    <Compile Include="BO\IDatedEntity.cs" />
     <Compile Include="BO\InstanceFeature.cs" />
     <Compile Include="BO\ImageDirectory.cs" />
     <Compile Include="BO\ImageDirectoryFeature.cs" />
@@ -59,6 +60,9 @@
     <Compile Include="BO\InstanceSetRole.cs" />
     <Compile Include="BO\Label.cs" />
     <Compile Include="BO\LabelCategory.cs" />
+    <Compile Include="BO\MultiPageImageFile.cs" />
+    <Compile Include="BO\ReferenceData\County.cs" />
+    <Compile Include="BO\ReferenceData\State.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

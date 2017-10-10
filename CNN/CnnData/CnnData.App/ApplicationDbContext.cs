@@ -1,7 +1,9 @@
 ﻿using CnnData.Lib.BO;
+using CnnData.Lib.BO.ReferenceData;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,8 +14,30 @@ namespace CnnData.App
   {
     public ApplicationDbContext() : base("name=ApplicationDbContext")
     {
+      var objectContext = ((IObjectContextAdapter)this).ObjectContext;
     }
 
+    private void OnSavingChanged(object sender, EventArgs e)
+    {
+      var now = DateTime.Now;
+      foreach (var entry in this.ChangeTracker.Entries<IDatedEntity>())
+      {
+        var entity = entry.Entity;
+        switch (entry.State)
+        {
+          case EntityState.Added:
+            entity.CreatedOn = now;
+            entity.UpdatedOn = now;
+            break;
+          case EntityState.Modified:
+            entity.UpdatedOn = now;
+            break;
+        }
+      }
+      this.ChangeTracker.DetectChanges();
+    }
+
+    #region dbo Schema
     public virtual DbSet<FeatureType> FeatureTypes { get; set; }
     public virtual DbSet<ImageDirectory> ImageDirectories { get; set; }
     public virtual DbSet<ImageDirectoryFeature> ImageDirectoryFeatures { get; set; }
@@ -26,5 +50,12 @@ namespace CnnData.App
     public virtual DbSet<InstanceSet> InstanceSets { get; set; }
     public virtual DbSet<LabelCategory> LabelCategories { get; set; }
     public virtual DbSet<Label> Labels { get; set; }
+    public virtual DbSet<MultiPageImageFile> MultiPageImageFiles { get; set; }
+    #endregion dbo Schema
+
+    #region Ref Schema
+    public virtual DbSet<State> States { get; set; }
+    public virtual DbSet<County> Counties { get; set; }
+    #endregion Ref Schema
   }
 }

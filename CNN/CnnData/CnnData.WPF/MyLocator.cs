@@ -17,6 +17,7 @@ namespace CnnData.WPF
     {
       ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
       SimpleIoc.Default.Register<IWindowService, WindowService>();
+      SimpleIoc.Default.Register<ImageFileService>();
       SimpleIoc.Default.Register<MainVM>();
     }
 

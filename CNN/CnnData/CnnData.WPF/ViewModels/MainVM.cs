@@ -1,4 +1,6 @@
 ﻿using CnnData.App.Interfaces;
+using CnnData.Lib.BO;
+using CnnData.WPF.Services;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using System;
@@ -13,29 +15,39 @@ namespace CnnData.WPF.ViewModels
 {
   public class MainVM : ViewModelBase
   {
-    public MainVM(IWindowService windowService)
+    public MainVM(IWindowService windowService, ImageFileService imageFileService)
     {
       this.WindowService = windowService;
+      this.ImageFileService = imageFileService;
     }
 
     private const string BaseWindowTitle = "Image Tagger";
-    private readonly IWindowService WindowService;
+
+    public readonly IWindowService WindowService;
+    public readonly ImageFileService ImageFileService;
+
+    private ImageDirectory _CurrentDirectory;
+    public ImageDirectory CurrentDirectory
+    {
+      get { return this._CurrentDirectory; }
+      set { Set(() => this.CurrentDirectory, ref this._CurrentDirectory, value); }
+    }
 
     internal void OnWindowClosing(object sender, System.ComponentModel.CancelEventArgs e)
     {
       e.Cancel = false;
     }
-
-    private RelayCommand _TalkCommand;
-    public ICommand TalkCommand
+    
+    private RelayCommand _OpenDirectoryManagerCommand;
+    public ICommand OpenDirectoryManagerCommand
     {
-      get { return _TalkCommand ?? (_TalkCommand = new RelayCommand(() => { Talk(); } )); }
+      get { return _OpenDirectoryManagerCommand ?? (_OpenDirectoryManagerCommand = new RelayCommand(() => { OpenDirectoryManager(); })); }
     }
 
-    public void Talk()
+    private void OpenDirectoryManager()
     {
-      var reader = new SpeechSynthesizer();
-      reader.Speak("Shat in the fuck, you bucket of fucking shat. Go fuck your shat in a hat with your duck fucker.");
+      var directoryManagerVM = new DirectoryManagerVM(this);
+      this.WindowService.ShowDialog(DirectoryManagerVM.BaseWindowTitle, directoryManagerVM);
     }
   }
 }

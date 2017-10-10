@@ -14,7 +14,9 @@ namespace CnnData.Lib.BO
     [Key]
     [MaxLength(255)]
     public string DirectoryName { get; set; }
-
+    
     public virtual ICollection<ImageDirectoryFeature> ImageDirectoryFeatures { get; set; }
+    public virtual ICollection<ImageFile> ImageFiles { get; set; }
+    public virtual ICollection<MultiPageImageFile> MultiPageImageFiles { get; set; }
   }
 }

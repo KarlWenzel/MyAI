@@ -78,8 +78,20 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controls\DirectoryManager.xaml.cs">
+      <DependentUpon>DirectoryManager.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Converters\BoolToVisibilityConverter.cs" />
+    <Compile Include="Interfaces\IWindowable.cs" />
+    <Compile Include="Services\ImageFileService.cs" />
     <Compile Include="Services\WindowService.cs" />
+    <Compile Include="ViewModels\DirectoryManagerVM.cs" />
+    <Compile Include="ViewModels\ImageFileVM.cs" />
     <Compile Include="ViewModels\MainVM.cs" />
+    <Page Include="Controls\DirectoryManager.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

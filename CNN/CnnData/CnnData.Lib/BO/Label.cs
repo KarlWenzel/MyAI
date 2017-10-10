@@ -19,6 +19,8 @@ namespace CnnData.Lib.BO
     public string CategoryName { get; set; }
     public virtual LabelCategory LabelCategory { get; set; }
 
+    public string HotKey { get; set; }
+
     public virtual ICollection<Instance> Instance { get; set; }
   }
 }

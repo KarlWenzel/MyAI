@@ -1,0 +1,5 @@
+
+
+class DataGenerator(ImageDataGenerator)
+	def __init__():
+		print "hi"
