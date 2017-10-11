@@ -13,5 +13,7 @@ namespace CnnData.Lib.BO
   {
     [Key]
     public string CategoryName { get; set; }
+
+    public virtual ICollection<Label> Labels { get; set; }
   }
 }

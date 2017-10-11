@@ -61,6 +61,7 @@
     <Compile Include="BO\Label.cs" />
     <Compile Include="BO\LabelCategory.cs" />
     <Compile Include="BO\MultiPageImageFile.cs" />
+    <Compile Include="BO\MultiPageImageFileFeature.cs" />
     <Compile Include="BO\ReferenceData\County.cs" />
     <Compile Include="BO\ReferenceData\State.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

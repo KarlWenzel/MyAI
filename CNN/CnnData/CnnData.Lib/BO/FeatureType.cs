@@ -15,6 +15,11 @@ namespace CnnData.Lib.BO
     [MaxLength(128)]
     public string FeatureName { get; set; }
 
+    public bool UseWithImageDirectories { get; set; }
+    public bool UseWithImageFiles { get; set; }
+    public bool UseWithInstances { get; set; }
+    public bool UseWithMultiPageImageFiles { get; set; }
+
     public string Notes { get; set; }
   }
 }

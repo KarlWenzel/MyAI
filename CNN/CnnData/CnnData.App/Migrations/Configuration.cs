@@ -11,7 +11,6 @@ namespace CnnData.App.Migrations
   {
     public Configuration()
     {
-      AutomaticMigrationsEnabled = true;
       AutomaticMigrationDataLossAllowed = true;
     }
 

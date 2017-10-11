@@ -15,6 +15,7 @@ namespace CnnData.App
     public ApplicationDbContext() : base("name=ApplicationDbContext")
     {
       var objectContext = ((IObjectContextAdapter)this).ObjectContext;
+      objectContext.SavingChanges += OnSavingChanged;
     }
 
     private void OnSavingChanged(object sender, EventArgs e)
@@ -51,6 +52,7 @@ namespace CnnData.App
     public virtual DbSet<LabelCategory> LabelCategories { get; set; }
     public virtual DbSet<Label> Labels { get; set; }
     public virtual DbSet<MultiPageImageFile> MultiPageImageFiles { get; set; }
+    public virtual DbSet<MultiPageImageFileFeature> MultiPageImageFileFeatures { get; set; }
     #endregion dbo Schema
 
     #region Ref Schema

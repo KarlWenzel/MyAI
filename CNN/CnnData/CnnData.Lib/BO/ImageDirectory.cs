@@ -9,11 +9,14 @@ using System.Threading.Tasks;
 namespace CnnData.Lib.BO
 {
   [Table("ImageDirectories")]
-  public class ImageDirectory
+  public class ImageDirectory : IDatedEntity
   {
     [Key]
     [MaxLength(255)]
     public string DirectoryName { get; set; }
+    
+    public DateTime? CreatedOn { get; set; }
+    public DateTime? UpdatedOn { get; set; }
     
     public virtual ICollection<ImageDirectoryFeature> ImageDirectoryFeatures { get; set; }
     public virtual ICollection<ImageFile> ImageFiles { get; set; }

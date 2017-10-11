@@ -49,6 +49,10 @@
   <ItemGroup>
     <Compile Include="ApplicationDbContext.cs" />
     <Compile Include="Interfaces\IWindowService.cs" />
+    <Compile Include="Migrations\201710111547116_Initial_CODE.cs" />
+    <Compile Include="Migrations\201710111547116_Initial_CODE.Designer.cs">
+      <DependentUpon>201710111547116_Initial_CODE.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -61,6 +65,11 @@
       <Project>{5c406c71-a977-4b2f-a151-5fc4218e5ed1}</Project>
       <Name>CnnData.Lib</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201710111547116_Initial_CODE.resx">
+      <DependentUpon>201710111547116_Initial_CODE.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

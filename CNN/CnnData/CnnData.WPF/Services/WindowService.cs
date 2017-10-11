@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Forms;
 
 namespace CnnData.WPF.Services
 {
@@ -43,7 +44,7 @@ namespace CnnData.WPF.Services
     public bool? ShowOpenSingleFileDialog(out string fileName, string filter, string initialDirectory)
     {
       fileName = null;
-      var openFileDialog = new OpenFileDialog();
+      var openFileDialog = new Microsoft.Win32.OpenFileDialog();
 
       openFileDialog.Multiselect = false;
       openFileDialog.Filter = filter;
@@ -59,10 +60,26 @@ namespace CnnData.WPF.Services
       return result;
     }
 
+    public bool ShowOpenSingleFolderDialog(out string fileName, string filter, string initialDirectory)
+    {
+      fileName = null;
+      using (var folderBrowserDialog = new FolderBrowserDialog())
+      {
+        var result = folderBrowserDialog.ShowDialog();
+        if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(folderBrowserDialog.SelectedPath))
+        {
+          fileName = folderBrowserDialog.SelectedPath;
+          return true;
+        }
+      }
+
+      return false;
+    }
+
     public bool? ShowSaveFileDialog(out string fileName, string initialDirectory)
     {
       fileName = null;
-      var saveFileDialog = new SaveFileDialog();
+      var saveFileDialog = new Microsoft.Win32.SaveFileDialog();
       //saveFileDialog.InitialDirectory = initialDirectory;
 
       var result = saveFileDialog.ShowDialog();
@@ -77,7 +94,7 @@ namespace CnnData.WPF.Services
 
     public YesNoCancel ShowYesNoCancelMessageBox(string message, string caption)
     {
-      switch (MessageBox.Show(message, caption, MessageBoxButton.YesNoCancel))
+      switch (System.Windows.MessageBox.Show(message, caption, MessageBoxButton.YesNoCancel))
       {
         case MessageBoxResult.Yes:
           return YesNoCancel.Yes;

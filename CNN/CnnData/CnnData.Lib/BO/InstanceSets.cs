@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace CnnData.Lib.BO
 {
   [Table("InstanceSets")]
-  public class InstanceSet
+  public class InstanceSet : IDatedEntity
   {
     [Key]
     public int ID { get; set; }
@@ -18,6 +18,8 @@ namespace CnnData.Lib.BO
     public int? MinFileInstanceID { get; set; }
     public int? MaxFileInstanceID { get; set; }
     public bool UsesCrossValidation { get; set; }
+    public DateTime? CreatedOn { get; set; }
+    public DateTime? UpdatedOn { get; set; }
 
     public DateTime DateCreated { get; set; }
     public string Notes { get; set; }

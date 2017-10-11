@@ -18,6 +18,7 @@ namespace CnnData.App.Interfaces
     void ShowWindow(object viewModel);
     bool? ShowDialog(string title, object viewModel);
     bool? ShowOpenSingleFileDialog(out string fileName, string filter, string initialDirectory);
+    bool ShowOpenSingleFolderDialog(out string fileName, string filter, string initialDirectory);
     bool? ShowSaveFileDialog(out string fileName, string initialDirectory);
     YesNoCancel ShowYesNoCancelMessageBox(string message, string caption);
   }

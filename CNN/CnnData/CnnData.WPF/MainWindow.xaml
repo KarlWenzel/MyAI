@@ -5,19 +5,29 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CnnData.WPF"
         mc:Ignorable="d"
+				xmlns:controls="clr-namespace:CnnData.WPF.Controls"
         DataContext="{Binding Main, Source={StaticResource Locator}}"
         Title="MainWindow" Height="500" Width="1024">
   
   <DockPanel>
 
-    <Menu DockPanel.Dock="Top">
+    <!--<Menu DockPanel.Dock="Top">
       <MenuItem Header="_File">
         <MenuItem Header="_Open"/>
         <MenuItem Header="_Close"/>
         <MenuItem Header="_Save"/>
       </MenuItem>
-    </Menu>
-    
+    </Menu>-->
+
+    <StatusBar DockPanel.Dock="Top">
+      <StatusBarItem>
+        <Button Command="{Binding OpenDirectoryManagerCommand}">Choose Folder</Button>
+      </StatusBarItem>
+      <StatusBarItem>
+        <TextBox Text="{Binding CurrentDirectory.DirectoryName}"></TextBox>
+      </StatusBarItem>
+    </StatusBar>
+
     <Grid>
       <Grid.RowDefinitions>
         <RowDefinition/>
@@ -27,27 +37,46 @@
         <ColumnDefinition Width="Auto"/>
         <ColumnDefinition MinWidth="10"/>
       </Grid.ColumnDefinitions>
-      <DockPanel Grid.Row="0" Grid.Column="0">
-        <StatusBar DockPanel.Dock="Top">
-          <StatusBarItem>
-            <TextBlock>Connected to Database</TextBlock>
-          </StatusBarItem>
-        </StatusBar>
-        <Label Content="Action Pane" Background="Azure"/>
-      </DockPanel>      
+      
+      <StackPanel Grid.Row="0" Grid.Column="0">
+
+        <Label Margin="0,0,0,10" Background="SteelBlue" Foreground="White">Images</Label>
+        <controls:ImageFileList DataContext="{Binding ImageFileListVM}"></controls:ImageFileList>
+
+        <Label Margin="0,10,0,10" Background="SteelBlue" Foreground="White">Image Classification</Label>
+        <StackPanel Orientation="Horizontal">
+          <TextBlock Text="Class Type" Margin="0,3,5,0"></TextBlock>
+          <ComboBox ItemsSource="{Binding LabelCategories}" SelectedItem="{Binding SelectedLabelCategory}">
+            <ComboBox.ItemTemplate>
+              <DataTemplate>
+                <StackPanel Orientation="Horizontal">
+                  <TextBlock Text="{Binding CategoryName}"></TextBlock>
+                </StackPanel>
+              </DataTemplate>
+            </ComboBox.ItemTemplate>
+          </ComboBox>
+        </StackPanel>
+
+        <ItemsControl ItemsSource="{Binding SelectedLabelCategory.Labels}">
+          <ItemsControl.ItemTemplate>
+            <DataTemplate>
+              <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{Binding LabelName}" Width="100"></TextBlock>
+                <TextBlock Text="{Binding HotKey}"></TextBlock>
+              </StackPanel>
+            </DataTemplate>
+          </ItemsControl.ItemTemplate>
+        </ItemsControl>
+
+        <Label Margin="0,10,0,10" Background="SteelBlue" Foreground="White">Image Features</Label>
+        <DataGrid ItemsSource="{Binding CurrentImageFileVM.Features}"></DataGrid>
+
+      </StackPanel>      
+      
       <DockPanel Grid.Row="0" Grid.Column="2">
-        <StatusBar DockPanel.Dock="Top">
+        <StatusBar DockPanel.Dock="Bottom">
           <StatusBarItem>
-            <Button>Prev</Button>
-          </StatusBarItem>
-          <StatusBarItem>
-            <Button>Next</Button>
-          </StatusBarItem>
-          <StatusBarItem>
-            <TextBlock>Tags: One, Two, Three</TextBlock>
-          </StatusBarItem>
-          <StatusBarItem>
-            <Button Command="{Binding OpenDirectoryManagerCommand}">Open Folder</Button>
+            <TextBlock Text="{Binding CurrentImageFileVM.FileName}"></TextBlock>
           </StatusBarItem>
         </StatusBar>
         <StackPanel Background="Lavender">
@@ -57,8 +86,9 @@
               <MenuItem Header="Properties" />
             </ContextMenu>
           </StackPanel.ContextMenu>
-          <TextBlock Text="View Pane"></TextBlock>
-          
+          <controls:ZoomBorder ClipToBounds="True" x:Name="border">
+            <Image x:Name="MainImage" Source="{Binding CurrentImage}"></Image>
+          </controls:ZoomBorder>
         </StackPanel>
       </DockPanel>
       
