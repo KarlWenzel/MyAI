@@ -17,18 +17,15 @@ using System.Windows.Shapes;
 namespace CnnData.WPF.Controls
 {
   /// <summary>
-  /// Interaction logic for DirectoryManager.xaml
+  /// Interaction logic for ImageLabeler.xaml
   /// </summary>
-  public partial class DirectoryManager : UserControl
+  public partial class ImageLabeler : UserControl
   {
-    public DirectoryManager()
+    public ImageLabeler()
     {
       InitializeComponent();
     }
 
-    private void ListViewItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-    {
-      (this.DataContext as DirectoryManagerVM).OnSelect();
-    }
+
   }
 }

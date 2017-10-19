@@ -6,28 +6,20 @@
              xmlns:local="clr-namespace:CnnData.WPF.Controls"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-  <StackPanel>
-    <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
-      <Label>File Filters</Label>
-      <Button>Add Filter</Button>
-      <Button>Remove Filters</Button>
-    </StackPanel>
-    <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
-      <Label>Filter 1 Placeholder</Label>
-      <Button>Remove</Button>
-    </StackPanel>
-    <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
-      <Label>Filter 2 Placeholder</Label>
-      <Button>Remove</Button>
-    </StackPanel>
-    <ListView ItemsSource="{Binding ImageFileVMs}" SelectedItem="{Binding SelectedImageFileVM}" Margin="0,10,0,0" ScrollViewer.VerticalScrollBarVisibility="Auto" Height="500">
-      <ListView.View>
-        <GridView>
-          <GridViewColumn DisplayMemberBinding="{Binding Path=FileName}" Header="File Name"></GridViewColumn>
-          <GridViewColumn DisplayMemberBinding="{Binding Path=InDatabase}" Header="In DB"></GridViewColumn>
-          <GridViewColumn DisplayMemberBinding="{Binding Path=InFileSystem}" Header="In FS"></GridViewColumn>
-        </GridView>
-      </ListView.View>
-    </ListView>
-  </StackPanel>
+
+  <ListView 
+      x:Name="ImageFilesListView"
+      ItemsSource="{Binding ImageFileVMs}" 
+      SelectedItem="{Binding SelectedImageFileVM}" 
+      ScrollViewer.VerticalScrollBarVisibility="Auto" 
+      Height="500">
+    <ListView.View>
+      <GridView>
+        <GridViewColumn DisplayMemberBinding="{Binding Path=ImageFile.FileName}" Header="File Name"></GridViewColumn>
+        <GridViewColumn DisplayMemberBinding="{Binding Path=InDatabase}" Header="In DB"></GridViewColumn>
+        <GridViewColumn DisplayMemberBinding="{Binding Path=InFileSystem}" Header="In FS"></GridViewColumn>
+      </GridView>
+    </ListView.View>
+  </ListView>
+
 </UserControl>

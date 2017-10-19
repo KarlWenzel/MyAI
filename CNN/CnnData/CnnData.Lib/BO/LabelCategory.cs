@@ -12,6 +12,7 @@ namespace CnnData.Lib.BO
   public class LabelCategory
   {
     [Key]
+    [MaxLength(128)]
     public string CategoryName { get; set; }
 
     public virtual ICollection<Label> Labels { get; set; }

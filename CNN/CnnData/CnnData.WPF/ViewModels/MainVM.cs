@@ -1,15 +1,19 @@
 ﻿using CnnData.App.Interfaces;
 using CnnData.Lib.BO;
+using CnnData.WPF.Interfaces;
 using CnnData.WPF.Services;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Speech.Synthesis;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
 
@@ -22,22 +26,50 @@ namespace CnnData.WPF.ViewModels
       this.WindowService = windowService;
       this.DataService = dataService;
       this.FeatureTypes = new ObservableCollection<FeatureType>(this.DataService.GetFeatureTypes());
-      this.LabelCategories = new ObservableCollection<LabelCategory>(this.DataService.GetLabelCategories());
+      // note some setup work is also done in the MainWindow property set which is fired from the MainWindow.xaml code behind
     }
 
     private const string BaseWindowTitle = "Image Tagger";
 
+    private Window _MainWindow;
+    public Window MainWindow
+    {
+      /*
+       *  NOTE that MainWindow's get is private.  This is so programmers avoid the mistake of trying to use it before it is 
+       *  ready, as the Window is not set in the constructor by the Locator.  Instead, the programmer should register any 
+       *  dependencies to the MainWindow in the setter method.
+       */
+      private get { return this._MainWindow; }
+      set
+      {
+        Set(() => this.MainWindow, ref this._MainWindow, value);
+        this.MainWindow.Closing += OnWindowClosing;
+        this.ImageLabelerVM = new ImageLabelerVM(this, this.MainWindow);
+      }
+    }
+
     public readonly IWindowService WindowService;
     public readonly DataService DataService;
-    
-    public ObservableCollection<FeatureType> FeatureTypes { get; set; }
-    public ObservableCollection<LabelCategory> LabelCategories { get; set; }
 
-    private LabelCategory _SelectedLabelCategory;
-    public LabelCategory SelectedLabelCategory
+    private ImageLabelerVM _ImageLabelerVM;
+    public ImageLabelerVM ImageLabelerVM
     {
-      get { return this._SelectedLabelCategory; }
-      set { Set(() => this.SelectedLabelCategory, ref this._SelectedLabelCategory, value); }
+      get { return this._ImageLabelerVM; }
+      set { Set(() => this.ImageLabelerVM, ref this._ImageLabelerVM, value); }
+    }
+
+    public ObservableCollection<FeatureType> _FeatureTypes;
+    public ObservableCollection<FeatureType> FeatureTypes
+    {
+      get { return this._FeatureTypes; }
+      set { Set(() => this.FeatureTypes, ref this._FeatureTypes, value); }
+    }
+
+    private LabelCategory _CurrentLabelCategory;
+    public LabelCategory CurrentLabelCategory
+    {
+      get { return this._CurrentLabelCategory; }
+      set { Set(() => this.CurrentLabelCategory, ref this._CurrentLabelCategory, value); }
     }
 
     private ImageDirectory _CurrentDirectory;
@@ -47,12 +79,27 @@ namespace CnnData.WPF.ViewModels
       set
       {
         Set(() => this.CurrentDirectory, ref this._CurrentDirectory, value);
-        this.ImageFileListVM = new ImageFileListVM(this);
-        RaisePropertyChanged(() => this.ImageFileListVM);
+        this.ImageFileListVM = new ImageFileListVM(this, this.MainWindow);
       }
     }
 
-    public ImageFileListVM ImageFileListVM { get; set; }
+    private ImageFileListVM _ImageFileListVM;
+    public ImageFileListVM ImageFileListVM
+    {
+      get { return this._ImageFileListVM; }
+      set
+      {
+        Set(() => this.ImageFileListVM, ref this._ImageFileListVM, value);
+        this.ImageFileListVM.PropertyChanged += ImageFileListVM_PropertyChanged;
+      }
+    }
+
+    private bool _IsImageFileListLoaded;
+    public bool IsImageFileListLoaded
+    {
+      get { return this._IsImageFileListLoaded; }
+      set { Set(() => this.IsImageFileListLoaded, ref this._IsImageFileListLoaded, value); }
+    }
 
     private ImageFileVM _CurrentImageFileVM;
     public ImageFileVM CurrentImageFileVM
@@ -63,12 +110,19 @@ namespace CnnData.WPF.ViewModels
         Set(() => this.CurrentImageFileVM, ref this._CurrentImageFileVM, value);
         if (this.CurrentImageFileVM != null && this.CurrentImageFileVM.InFileSystem)
         {
-          var bitmap = new BitmapImage();
-          bitmap.BeginInit();
-          bitmap.StreamSource = this.CurrentImageFileVM.GetStream();
-          bitmap.CacheOption = BitmapCacheOption.OnLoad;
-          bitmap.EndInit();
-          this.CurrentImage = bitmap;
+          try
+          {
+            var bitmap = new BitmapImage();
+            bitmap.BeginInit();
+            bitmap.StreamSource = this.CurrentImageFileVM.GetStream();
+            bitmap.CacheOption = BitmapCacheOption.OnLoad;
+            bitmap.EndInit();
+            this.CurrentImage = bitmap;
+          }
+          catch (Exception err)
+          {
+            this.CurrentImage = null;
+          }
         }
       }
     }
@@ -96,5 +150,25 @@ namespace CnnData.WPF.ViewModels
     {
       e.Cancel = false;
     }
+    
+    private void ImageFileListVM_PropertyChanged(object sender, PropertyChangedEventArgs e)
+    {
+      if (e.PropertyName == "ImageFileVMs")
+      {
+        this.IsImageFileListLoaded = (this.ImageFileListVM != null && this.ImageFileListVM.ImageFileVMs.Any());
+      }
+    }
+
+    public void NextImage()
+    {
+      this.ImageFileListVM.SelectNextImage();
+    }
+
+    public void PrevImage()
+    {
+      this.ImageFileListVM.SelectPrevImage();
+    }
+
+
   }
 }

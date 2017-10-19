@@ -53,6 +53,14 @@
     <Compile Include="Migrations\201710111547116_Initial_CODE.Designer.cs">
       <DependentUpon>201710111547116_Initial_CODE.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710132102054_InputKeys_NO_CODE.cs" />
+    <Compile Include="Migrations\201710132102054_InputKeys_NO_CODE.Designer.cs">
+      <DependentUpon>201710132102054_InputKeys_NO_CODE.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710172215316_FG_Color_NO_CODE.cs" />
+    <Compile Include="Migrations\201710172215316_FG_Color_NO_CODE.Designer.cs">
+      <DependentUpon>201710172215316_FG_Color_NO_CODE.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -69,6 +77,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201710111547116_Initial_CODE.resx">
       <DependentUpon>201710111547116_Initial_CODE.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710132102054_InputKeys_NO_CODE.resx">
+      <DependentUpon>201710132102054_InputKeys_NO_CODE.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710172215316_FG_Color_NO_CODE.resx">
+      <DependentUpon>201710172215316_FG_Color_NO_CODE.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

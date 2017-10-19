@@ -44,6 +44,7 @@ namespace CnnData.App
     public virtual DbSet<ImageDirectoryFeature> ImageDirectoryFeatures { get; set; }
     public virtual DbSet<ImageFile> ImageFiles { get; set; }
     public virtual DbSet<ImageFileFeature> ImageFileFeatures { get; set; }
+    public virtual DbSet<ImageFileLabel> ImageFileLabels { get; set; }
     public virtual DbSet<Instance> Instances { get; set; }
     public virtual DbSet<InstanceFeature> InstanceFeatures { get; set; }
     public virtual DbSet<InstanceSetInstance> InstanceSetInstances { get; set; }
@@ -58,6 +59,9 @@ namespace CnnData.App
     #region Ref Schema
     public virtual DbSet<State> States { get; set; }
     public virtual DbSet<County> Counties { get; set; }
+    public virtual DbSet<InputKey> InputKeys { get; set; }
+    public virtual DbSet<ModifierKey> ModifierKeys { get; set; }
+    public virtual DbSet<WinMediaColor> WinMediaColors { get; set; }
     #endregion Ref Schema
   }
 }

@@ -133,7 +133,7 @@ namespace CnnData.WPF.ViewModels
       get { return _SelectCommand ?? (_SelectCommand = new RelayCommand(() => { OnSelect(); }, CanSelect)); }
     }
 
-    private void OnSelect()
+    public void OnSelect()
     {
       this.MainVM.CurrentDirectory = this.SelectedImageDirectory;
       this.CloseWindow();

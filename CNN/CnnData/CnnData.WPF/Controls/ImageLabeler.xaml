@@ -1,0 +1,59 @@
+﻿<UserControl x:Class="CnnData.WPF.Controls.ImageLabeler"
+             x:Name="ImageLabelerControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CnnData.WPF.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+
+  <StackPanel>
+
+    <Border BorderThickness="0,0,0,1" BorderBrush="LightGray">
+      <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
+        <TextBlock Text="Class Type" Margin="0,3,0,0" Width="100"></TextBlock>
+        <ComboBox x:Name="ComboLabelCategories" ItemsSource="{Binding LabelCategories}" SelectedItem="{Binding SelectedLabelCategory}">
+          <ComboBox.InputBindings>
+            <KeyBinding Key="Right" Command="{Binding HotKeyCommand}" CommandParameter="{Binding NextHotKeyParam}"></KeyBinding>
+            <KeyBinding Key="Left" Command="{Binding HotKeyCommand}" CommandParameter="{Binding PrevHotKeyParam}"></KeyBinding>
+          </ComboBox.InputBindings>
+          <ComboBox.ItemTemplate>
+            <DataTemplate>
+              <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{Binding CategoryName}"></TextBlock>
+              </StackPanel>
+            </DataTemplate>
+          </ComboBox.ItemTemplate>
+        </ComboBox>
+      </StackPanel>
+    </Border>
+
+    <ItemsControl ItemsSource="{Binding LabelVMs}">
+      <ItemsControl.ItemTemplate>
+        <DataTemplate>
+          <StackPanel Orientation="Horizontal">
+            <TextBlock Text="{Binding LabelName}" Width="120"></TextBlock>
+            <Button Height="12" Width="12" Background="{Binding BackgroundBrush}" Margin="0,0,5,0">
+              <Button.Style>
+                <Style TargetType="Button">
+                  <Setter Property="Template">
+                    <Setter.Value>
+                      <ControlTemplate TargetType="Button">
+                        <Border x:Name="Border" Background="{Binding BackgroundBrush}">
+                          <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center" />
+                        </Border>
+                      </ControlTemplate>
+                    </Setter.Value>
+                  </Setter>
+                </Style>
+              </Button.Style>
+            </Button>
+            <TextBlock Text="{Binding HotKeyText}"></TextBlock>
+          </StackPanel>
+        </DataTemplate>
+      </ItemsControl.ItemTemplate>
+    </ItemsControl>
+
+  </StackPanel>
+</UserControl>

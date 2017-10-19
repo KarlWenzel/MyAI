@@ -26,10 +26,8 @@ namespace CnnData.WPF
       InitializeComponent();
 
       var vm = this.DataContext as MainVM;
-      if (vm != null)
-      {
-        this.Closing += vm.OnWindowClosing;
-      }
+      vm.MainWindow = this;
     }
+
   }
 }

@@ -20,7 +20,7 @@
     </Menu>-->
 
     <StatusBar DockPanel.Dock="Top">
-      <StatusBarItem>
+      <StatusBarItem Margin="5,0,0,0">
         <Button Command="{Binding OpenDirectoryManagerCommand}">Choose Folder</Button>
       </StatusBarItem>
       <StatusBarItem>
@@ -38,56 +38,73 @@
         <ColumnDefinition MinWidth="10"/>
       </Grid.ColumnDefinitions>
       
-      <StackPanel Grid.Row="0" Grid.Column="0">
+      <StackPanel Grid.Row="0" Grid.Column="0" Margin="5,0,0,0">
 
-        <Label Margin="0,0,0,10" Background="SteelBlue" Foreground="White">Images</Label>
-        <controls:ImageFileList DataContext="{Binding ImageFileListVM}"></controls:ImageFileList>
-
-        <Label Margin="0,10,0,10" Background="SteelBlue" Foreground="White">Image Classification</Label>
-        <StackPanel Orientation="Horizontal">
-          <TextBlock Text="Class Type" Margin="0,3,5,0"></TextBlock>
-          <ComboBox ItemsSource="{Binding LabelCategories}" SelectedItem="{Binding SelectedLabelCategory}">
-            <ComboBox.ItemTemplate>
-              <DataTemplate>
-                <StackPanel Orientation="Horizontal">
-                  <TextBlock Text="{Binding CategoryName}"></TextBlock>
-                </StackPanel>
-              </DataTemplate>
-            </ComboBox.ItemTemplate>
-          </ComboBox>
+        <StackPanel>
+          <Label Background="SteelBlue" Foreground="White">Image Details</Label>
+          <TabControl Margin="0,5,5,0">
+            <TabItem Header="Classifications">
+              <controls:ImageLabeler DataContext="{Binding ImageLabelerVM}"></controls:ImageLabeler>
+            </TabItem>
+            <TabItem Header="Features">
+              <DataGrid ItemsSource="{Binding CurrentImageFileVM.Features}"></DataGrid>    
+            </TabItem>
+          </TabControl>          
         </StackPanel>
 
-        <ItemsControl ItemsSource="{Binding SelectedLabelCategory.Labels}">
-          <ItemsControl.ItemTemplate>
-            <DataTemplate>
-              <StackPanel Orientation="Horizontal">
-                <TextBlock Text="{Binding LabelName}" Width="100"></TextBlock>
-                <TextBlock Text="{Binding HotKey}"></TextBlock>
-              </StackPanel>
-            </DataTemplate>
-          </ItemsControl.ItemTemplate>
-        </ItemsControl>
+        <StackPanel>
+          <Label Margin="0,10,0,10" Background="SteelBlue" Foreground="White">Image List</Label>
+          <controls:ImageFileList DataContext="{Binding ImageFileListVM}"></controls:ImageFileList>
+        </StackPanel>
 
-        <Label Margin="0,10,0,10" Background="SteelBlue" Foreground="White">Image Features</Label>
-        <DataGrid ItemsSource="{Binding CurrentImageFileVM.Features}"></DataGrid>
+        <StackPanel>
+          <Label Margin="0,10,0,10" Background="SteelBlue" Foreground="White">Image Filter</Label>
+        </StackPanel>
 
       </StackPanel>      
       
-      <DockPanel Grid.Row="0" Grid.Column="2">
-        <StatusBar DockPanel.Dock="Bottom">
-          <StatusBarItem>
-            <TextBlock Text="{Binding CurrentImageFileVM.FileName}"></TextBlock>
+      <DockPanel Grid.Row="0" Grid.Column="2" Margin="0,0,5,0">
+        <StatusBar DockPanel.Dock="Top" Height="27"  
+                   Background="{Binding CurrentImageFileVM.CurrentLabelVM.BackgroundBrush}" 
+                   Foreground="{Binding CurrentImageFileVM.CurrentLabelVM.ForegroundBrush}">
+          <StatusBarItem Margin="10,0,0,0">
+            <TextBlock Text="{Binding CurrentImageFileVM.CurrentLabelVM.LabelName}" FontSize="16"></TextBlock>
+          </StatusBarItem>
+        </StatusBar>
+        <StatusBar DockPanel.Dock="Bottom" Height="32"  
+                   Background="{Binding CurrentImageFileVM.CurrentLabelVM.BackgroundBrush}" 
+                   Foreground="{Binding CurrentImageFileVM.CurrentLabelVM.ForegroundBrush}">
+          <StatusBarItem Margin="10,0,0,0">
+            <TextBlock Text="{Binding CurrentImageFileVM.ImageFile.FileName}" FontSize="16"></TextBlock>
+          </StatusBarItem>
+          <StatusBarItem Margin="10,0,0,0">
+            <ItemsControl ItemsSource="{Binding CurrentImageFileVM.LabelVMs}" >
+              <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                  <StackPanel Orientation="Horizontal"/>
+                </ItemsPanelTemplate>
+              </ItemsControl.ItemsPanel>
+              <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                  <StackPanel Orientation="Horizontal" Margin="10,0,0,0">
+                    <TextBlock Text="{Binding LabelObject.CategoryName}" FontSize="16"></TextBlock>
+                    <TextBlock Text=": " FontSize="16"></TextBlock>
+                    <TextBlock Text="{Binding LabelName}" FontSize="16"></TextBlock>
+                  </StackPanel>
+                </DataTemplate>
+              </ItemsControl.ItemTemplate>
+            </ItemsControl>
           </StatusBarItem>
         </StatusBar>
         <StackPanel Background="Lavender">
-          <StackPanel.ContextMenu>
+          <!--<StackPanel.ContextMenu>
             <ContextMenu>
               <MenuItem Header="Rawr" />
               <MenuItem Header="Properties" />
             </ContextMenu>
-          </StackPanel.ContextMenu>
+          </StackPanel.ContextMenu>-->
           <controls:ZoomBorder ClipToBounds="True" x:Name="border">
-            <Image x:Name="MainImage" Source="{Binding CurrentImage}"></Image>
+            <Image x:Name="MainImage" Source="{Binding CurrentImage}" Stretch="None"></Image>
           </controls:ZoomBorder>
         </StackPanel>
       </DockPanel>

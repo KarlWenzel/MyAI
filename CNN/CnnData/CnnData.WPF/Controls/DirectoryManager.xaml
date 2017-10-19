@@ -20,6 +20,11 @@
     </StatusBar>
     <StackPanel Orientation="Horizontal">
       <ListView ItemsSource="{Binding ImageDirectories}" SelectedItem="{Binding SelectedImageDirectory}">
+        <ListView.Resources>
+          <Style TargetType="{x:Type ListViewItem}">
+            <EventSetter Event="MouseDoubleClick" Handler="ListViewItem_MouseDoubleClick" />
+          </Style>
+        </ListView.Resources>
         <ListView.View>
           <GridView>
             <GridViewColumn DisplayMemberBinding="{Binding Path=DirectoryName}" Header="Folder"></GridViewColumn>

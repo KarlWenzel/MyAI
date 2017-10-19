@@ -31,12 +31,13 @@ namespace CnnData.Lib.BO
     public int? PageSequence { get; set; }
     public string ImageExtension { get; set; }
     public string Checksum { get; set; }
-    public int WidthPixels { get; set; }
-    public int HeightPixels { get; set; }
+    public int? WidthPixels { get; set; }
+    public int? HeightPixels { get; set; }
     public DateTime? CreatedOn { get; set; }
     public DateTime? UpdatedOn { get; set; }
 
     public virtual ICollection<Instance> Instances { get; set; }
     public virtual ICollection<ImageFileFeature> ImageFileFeatures { get; set; }
+    public virtual ICollection<ImageFileLabel> ImageFileLabels { get; set; }
   }
 }

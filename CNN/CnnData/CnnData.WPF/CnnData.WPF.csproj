@@ -33,6 +33,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>i_know_kung_fu_Xba_icon.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
@@ -85,6 +88,9 @@
     <Compile Include="Controls\ImageFileList.xaml.cs">
       <DependentUpon>ImageFileList.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\ImageLabeler.xaml.cs">
+      <DependentUpon>ImageLabeler.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\PanAndZoomBorder.cs" />
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="Interfaces\IWindowable.cs" />
@@ -94,12 +100,18 @@
     <Compile Include="ViewModels\ImageDirectoryVM.cs" />
     <Compile Include="ViewModels\ImageFileListVM.cs" />
     <Compile Include="ViewModels\ImageFileVM.cs" />
+    <Compile Include="ViewModels\ImageLabelerVM.cs" />
+    <Compile Include="ViewModels\LabelVM.cs" />
     <Compile Include="ViewModels\MainVM.cs" />
     <Page Include="Controls\DirectoryManager.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\ImageFileList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ImageLabeler.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -157,6 +169,12 @@
       <Project>{5c406c71-a977-4b2f-a151-5fc4218e5ed1}</Project>
       <Name>CnnData.Lib</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\i_know_kung_fu_Xba_icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="i_know_kung_fu_Xba_icon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
