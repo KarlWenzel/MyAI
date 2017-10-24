@@ -89,8 +89,11 @@ namespace CnnData.WPF.ViewModels
       get { return this._ImageFileListVM; }
       set
       {
-        Set(() => this.ImageFileListVM, ref this._ImageFileListVM, value);
-        this.ImageFileListVM.PropertyChanged += ImageFileListVM_PropertyChanged;
+        if (Set(() => this.ImageFileListVM, ref this._ImageFileListVM, value))
+        {
+          this.CurrentImageFileVM = this.ImageFileListVM.SelectedImageFileVM;
+          this.ImageFileListVM.PropertyChanged += ImageFileListVM_PropertyChanged;
+        }
       }
     }
 
@@ -156,6 +159,11 @@ namespace CnnData.WPF.ViewModels
       if (e.PropertyName == "ImageFileVMs")
       {
         this.IsImageFileListLoaded = (this.ImageFileListVM != null && this.ImageFileListVM.ImageFileVMs.Any());
+      }
+
+      if (e.PropertyName == "SelectedImageFileVM")
+      {
+        this.CurrentImageFileVM = this.ImageFileListVM.SelectedImageFileVM;
       }
     }
 

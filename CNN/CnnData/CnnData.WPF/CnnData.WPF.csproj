@@ -93,6 +93,7 @@
     </Compile>
     <Compile Include="Controls\PanAndZoomBorder.cs" />
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
+    <Compile Include="Converters\EnumToBooleanConverter.cs" />
     <Compile Include="Interfaces\IWindowable.cs" />
     <Compile Include="Services\DataService.cs" />
     <Compile Include="Services\WindowService.cs" />
@@ -101,6 +102,8 @@
     <Compile Include="ViewModels\ImageFileListVM.cs" />
     <Compile Include="ViewModels\ImageFileVM.cs" />
     <Compile Include="ViewModels\ImageLabelerVM.cs" />
+    <Compile Include="ViewModels\LabelCategoryFilterVM.cs" />
+    <Compile Include="ViewModels\LabelFilterVM.cs" />
     <Compile Include="ViewModels\LabelVM.cs" />
     <Compile Include="ViewModels\MainVM.cs" />
     <Page Include="Controls\DirectoryManager.xaml">
@@ -175,6 +178,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="i_know_kung_fu_Xba_icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\StatusHelp.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

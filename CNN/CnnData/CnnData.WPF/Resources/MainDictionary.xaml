@@ -10,8 +10,8 @@
   <DataTemplate DataType="{x:Type viewModels:DirectoryManagerVM}">
     <controls:DirectoryManager></controls:DirectoryManager>
   </DataTemplate>
-                
-  <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter">
-  </converters:BoolToVisibilityConverter>
+
+  <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"></converters:BoolToVisibilityConverter>
+  <converters:EnumToBooleanConverter x:Key="EnumToBooleanConverter"></converters:EnumToBooleanConverter>
 
 </ResourceDictionary>
